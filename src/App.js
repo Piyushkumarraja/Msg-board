@@ -43,6 +43,10 @@ const App = () => {
   const messagesToDisplay = messages.slice(startIndex, endIndex);
 
   const handleDelete = async (messageId) => {
+    const shouldDelete = window.confirm("Are you sure you want to delete this message?");
+    if (!shouldDelete) {
+      return;
+    }
     try {
       await axios.delete(`${API_BASE_URL}${messageId}`, {
         headers: {
@@ -56,6 +60,10 @@ const App = () => {
   };
 
   const handleDeleteAll = async () => {
+    const shouldDelete = window.confirm("Are you sure you want to delete this message?");
+    if (!shouldDelete) {
+      return;
+    }
     try {
       for (const message of messages) {
         await axios.delete(`${API_BASE_URL}${message.id}`, {
